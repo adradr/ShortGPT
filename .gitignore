@@ -26,3 +26,6 @@ setup
 test.ipynb
 .venv/
 MANIFEST.in
+.ipynb_checkpoints/examples-checkpoint.ipynb
+db/content.db
+.DS_Store
