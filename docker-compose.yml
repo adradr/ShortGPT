@@ -1,0 +1,96 @@
+version: '3'
+services:
+  base:
+    build: 
+      context: .
+      dockerfile: Dockerfile.base
+    image: shortgpt-service:latest
+
+  shortgpt-api:
+    container_name: shortgpt-api
+    image: shortgpt-api:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile.shortgpt-api
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./videos/:/app/videos/
+      - ./public/:/app/public/
+      - ./db/:/app/db/
+    ports:
+      - "8888:8888"
+    depends_on:
+      - base
+
+  content-handler:
+    container_name: content-handler
+    image: content-handler:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile.content-handler
+    environment:
+    - PYTHONUNBUFFERED=1
+    volumes:
+      - ./db/:/app/db/
+    ports:
+      - "8887:8887"
+    depends_on:
+      - content-db
+
+  download-handler:
+    container_name: download-handler
+    image: download-handler:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile.download-handler
+    environment:
+    - PYTHONUNBUFFERED=1
+    volumes:
+      - ./db/:/app/db/
+    ports:
+      - "8886:8886"
+    depends_on:
+      - content-db
+
+  share-handler:
+    container_name: share-handler
+    image: share-handler:latest
+    build: 
+      context: .
+      dockerfile: Dockerfile.share-handler
+    environment:
+    - PYTHONUNBUFFERED=1
+    volumes:
+      - ./db/:/app/db/
+      - /dev/shm:/dev/shm
+    ports:
+      - "8885:8885"
+    depends_on:
+      - content-db
+      - selenium-chrome
+
+  selenium-chrome:
+    #image: selenium/standalone-chrome:latest
+    image: seleniarm/standalone-chromium:latest
+    #image: seleniarm/standalone-firefox:latest
+    container_name: selenium-chrome
+    volumes:
+      - /dev/shm:/dev/shm  # This ensures the browser can run smoothly in the container
+    shm_size: '2g'
+    ports:
+      - "4444:4444"       # Default Selenium port
+      - "7900:7900"
+
+  content-db:
+    container_name: content-db
+    image: nouchka/sqlite3:latest
+    environment:
+    - PYTHONUNBUFFERED=1
+    restart: no
+    volumes:
+      - ./db/:/root/db/
+    command: 
+      - sqlite3
+      - .open /root/db/content.db
+      - .read /root/db/init.sql

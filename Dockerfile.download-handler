@@ -1,0 +1,12 @@
+FROM shortgpt-service:latest
+
+# Copy application files
+COPY shortGPT /app/shortGPT
+COPY shortService/download_handler.py /app/download_handler.py
+COPY shortService/db_util.py /app/db_util.py
+COPY client_secret.json /app/
+COPY service_account_shortgpt.json /app/
+COPY .env /app/.env
+
+# Command to run the application
+CMD ["python3", "download_handler.py"]

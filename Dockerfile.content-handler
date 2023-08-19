@@ -1,0 +1,10 @@
+FROM shortgpt-service:latest
+
+COPY shortGPT /app/shortGPT
+COPY shortService/shortgpt_api.py /app/shortgpt_api.py
+COPY shortService/db_util.py /app/db_util.py
+COPY .env /app/.env
+
+WORKDIR /app
+
+CMD ["python3", "app.py"]

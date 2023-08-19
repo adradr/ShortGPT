@@ -1,0 +1,16 @@
+FROM ubuntu:latest
+
+# Install common dependencies
+RUN apt-get update && \
+    apt-get install -y imagemagick ffmpeg && \
+    apt-get install -y python3-pip
+
+# Copy and install Python requirements
+COPY requirements.txt /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
+
+# Modify ImageMagick's policy
+RUN sed -i '/<policy domain="path" rights="none" pattern="@\*"/d' /etc/ImageMagick-6/policy.xml
+
+# Set working directory
+WORKDIR /app

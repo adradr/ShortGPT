@@ -1,0 +1,3 @@
+FROM nouchka/sqlite3:latest
+COPY ./db/init.sql /root/db/init.sql
+CMD ["sqlite3", ".open /root/db/content.db", ".read /root/db/init.sql"]
