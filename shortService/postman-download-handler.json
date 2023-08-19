@@ -1,0 +1,89 @@
+{
+    "info": {
+        "_postman_id": "abcdefgh-ijkl-mnop-qrst-uvwxyz123456",
+        "name": "YouTube Video Collection",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get YouTube Videos by Query",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/get_youtube_videos?query={{query}}&max_results={{max_results}}",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "get_youtube_videos"
+                    ],
+                    "query": [
+                        {
+                            "key": "query",
+                            "value": "{{query}}"
+                        },
+                        {
+                            "key": "max_results",
+                            "value": "{{max_results}}"
+                        }
+                    ]
+                },
+                "description": "Endpoint to fetch YouTube videos based on a specific query."
+            }
+        },
+        {
+            "name": "Get Trending YouTube Videos",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "{{base_url}}/get_trending_youtube_videos?region_code={{region_code}}&max_results={{max_results}}",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "get_trending_youtube_videos"
+                    ],
+                    "query": [
+                        {
+                            "key": "region_code",
+                            "value": "{{region_code}}"
+                        },
+                        {
+                            "key": "max_results",
+                            "value": "{{max_results}}"
+                        }
+                    ]
+                },
+                "description": "Endpoint to fetch trending YouTube videos based on a region."
+            }
+        }
+    ],
+    "variable": [
+        {
+            "id": "base_url",
+            "key": "base_url",
+            "value": "http://0.0.0.0:8886",
+            "type": "string"
+        },
+        {
+            "id": "query",
+            "key": "query",
+            "value": "openai",
+            "type": "string"
+        },
+        {
+            "id": "region_code",
+            "key": "region_code",
+            "value": "US",
+            "type": "string"
+        },
+        {
+            "id": "max_results",
+            "key": "max_results",
+            "value": "10",
+            "type": "string"
+        }
+    ]
+}

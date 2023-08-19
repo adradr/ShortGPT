@@ -1,0 +1,95 @@
+{
+    "info": {
+        "_postman_id": "your-postman-id-here",
+        "name": "Video Upload API",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Share YouTube Video",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"video_name\":\"your_video_name_here\"}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/share-youtube",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8885",
+                    "path": [
+                        "share-youtube"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Share All YouTube Videos",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/share-all-youtube",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8885",
+                    "path": [
+                        "share-all-youtube"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Share TikTok Video",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\"video_name\":\"your_video_name_here\"}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/share-tiktok",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8885",
+                    "path": [
+                        "share-tiktok"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "protocolProfileBehavior": {}
+}

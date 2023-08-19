@@ -17,3 +17,10 @@ moviepy==1.0.3
 progress
 questionary
 edge-tts
+flask
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+tiktok-uploader
+oauth2client
